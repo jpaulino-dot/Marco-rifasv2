@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="es" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marcos Rifa AZUL | Sorteos y Premios de Lujo</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Montserrat & Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#0d0f12',
+                            card: '#14171d',
+                            border: '#242933',
+                            gold: '#38BDF8',
+                            orange: '#2563EB',
+                            orangeGlow: '#3B82F6'
+                        }
+                    },
+                    fontFamily: {
+                        heading: ['Montserrat', 'sans-serif'],
+                        body: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d0f12;
+            color: #f3f4f6;
+            overflow-x: hidden;
+        }
+
+        .glass-panel {
+            background: rgba(20, 23, 29, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(56, 189, 248, 0.12);
+        }
+
+        .glass-panel-hover {
+            transition: all 0.3s ease;
+        }
+        .glass-panel-hover:hover {
+            border-color: rgba(59, 130, 246, 0.4);
+            box-shadow: 0 0 25px rgba(37, 99, 235, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .glass-modal {
+            background: rgba(13, 15, 18, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(56, 189, 248, 0.25);
+        }
+
+        .text-gradient-gold {
+            background: linear-gradient(135deg, #E0F2FE 0%, #38BDF8 50%, #2563EB 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .bg-gradient-gold {
+            background: linear-gradient(135deg, #7DD3FC 0%, #0EA5E9 100%);
+        }
+
+        .bg-gradient-gold-hover:hover {
+            background: linear-gradient(135deg, #BAE6FD 0%, #38BDF8 100%);
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0d0f12;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #242933;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2563EB;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-brand-orange selection:text-white">
+
+    <!-- TOP ANNOUNCEMENT BAR -->
+    <div class="bg-gradient-gold text-black font-bold text-xs sm:text-sm py-2 px-4 text-center tracking-wide flex items-center justify-center gap-2 shadow-md">
+        <span class="inline-block w-2 h-2 rounded-full bg-black animate-ping"></span>
+        <span>¡GRAN SORTEO EN VIVO 15 DE DICIEMBRE 2026!</span>
+    </div>
+
+    <!-- NAVBAR -->
+    <header class="sticky top-0 z-40 w-full glass-panel border-b border-brand-border/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-12 h-12 rounded-2xl bg-gradient-gold p-0.5 shadow-lg group-hover:scale-105 transition-transform duration-300">
+                        <div class="w-full h-full bg-brand-dark rounded-[14px] flex items-center justify-center">
+                            <i class="fa-solid fa-car-side text-2xl text-gradient-gold"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="font-heading font-black text-xl sm:text-2xl text-white tracking-wider block leading-none">
+                            MARCOS<span class="text-gradient-gold">RIFA</span>
+                        </span>
+                        <span class="text-[10px] font-bold text-brand-gold uppercase tracking-widest block mt-0.5">¡Tu premio seguro!</span>
+                    </div>
+                </a>
+
+                <nav class="hidden md:flex items-center gap-8 font-medium text-sm">
+                    <a href="#rifa-principal" class="text-gray-300 hover:text-brand-gold transition-colors flex items-center gap-1.5">
+                        <i class="fa-solid fa-fire text-brand-orange"></i> Rifas Activas
+                    </a>
+                    <a href="#verificar" class="text-gray-300 hover:text-brand-gold transition-colors flex items-center gap-1.5">
+                        <i class="fa-solid fa-magnifying-glass text-brand-gold"></i> Verificar Boleto
+                    </a>
+                    <a href="#ganadores" class="text-gray-300 hover:text-brand-gold transition-colors flex items-center gap-1.5">
+                        <i class="fa-solid fa-trophy text-yellow-400"></i> Ganadores
+                    </a>
+                </nav>
+
+                <div class="hidden sm:flex items-center gap-4">
+                    <a href="#rifas" class="px-5 py-2.5 rounded-xl bg-gradient-gold text-black font-bold text-xs tracking-wider uppercase shadow-lg shadow-brand-orange/20 hover:scale-105 transition-all">
+                        Comprar Boletos
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO BANNER -->
+    <section class="relative pt-12 pb-20 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto space-y-6">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-panel border border-brand-gold/40 text-brand-gold text-xs font-bold uppercase tracking-wider shadow-inner">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    Plataforma #1 de Rifas Certificadas en RD
+                </div>
+
+                <h1 class="font-heading font-black text-3xl sm:text-5xl lg:text-6xl text-white tracking-tight leading-tight">
+                    ¡Marcos Rifa <span class="text-gradient-gold">TU SUERTE RAPIDA!</span>
+                </h1>
+                
+                <p class="text-gray-300 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed font-normal">
+                    Gana Vehículo, El último Phone o Dinero en efectivo muy fácil y transparente. Elige tus números y sé el próximo Ganador.
+                </p>
+
+                <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a href="#rifa-principal" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-gold text-black font-extrabold text-sm uppercase tracking-wider shadow-xl shadow-brand-orange/25 hover:scale-105 transition-all flex items-center justify-center gap-3">
+                        <i class="fa-solid fa-bolt text-lg"></i> Participar en Rifa Activa
+                    </a>
+                    <a href="#verificar" class="w-full sm:w-auto px-8 py-4 rounded-2xl glass-panel text-brand-gold font-bold text-sm uppercase tracking-wider hover:bg-brand-gold/10 transition-all flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-magnifying-glass"></i> Consultar Mis Números
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN ACTIVE RAFFLE SECTION -->
+    <section id="rifa-principal" class="py-12 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10">
+                <h2 class="font-heading font-extrabold text-2xl sm:text-4xl text-white">
+                    RIFA DESTACADA - <span class="text-gradient-gold">¡TÚ PUEDES GANAR HOY!</span>
+                </h2>
+                <p class="text-gray-400 text-sm mt-2">Selecciona la cantidad de boletos que deseas y participa al instante.</p>
+            </div>
+
+            <div class="glass-panel rounded-3xl p-6 lg:p-10 border border-brand-gold/30 relative overflow-hidden shadow-2xl">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    
+                    <!-- Left: Vehicle Presentation & Progress Bar -->
+                    <div class="lg:col-span-7 space-y-6">
+                        <!-- BARRA DE PROGRESO DE BOLETOS VENDIDOS -->
+                        <div class="glass-panel p-4 rounded-2xl border border-brand-gold/25 space-y-2">
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="font-bold text-brand-gold uppercase tracking-wider flex items-center gap-1.5">
+                                    <i class="fa-solid fa-fire text-brand-orange animate-bounce"></i> Progreso de Venta
+                                </span>
+                                <span id="progressText" class="text-white font-mono font-bold">Cargando...</span>
+                            </div>
+                            <!-- Contenedor de la barra -->
+                            <div class="w-full bg-brand-dark rounded-full h-3.5 overflow-hidden border border-brand-border p-0.5">
+                                <div id="progressBar" class="bg-gradient-gold h-full rounded-full transition-all duration-1000" style="width: 0%"></div>
+                            </div>
+                            <div class="flex justify-between text-[10px] text-gray-400">
+                                <span>Meta: 99,999 Boletos</span>
+                                <span id="soldStatsText">0 de 99,999 vendidos</span>
+                            </div>
+                        </div>
+
+                        <!-- NOMBRE DEL VEHÍCULO ACTUALIZADO -->
+                        <h3 class="font-heading font-black text-2xl sm:text-4xl text-white tracking-tight">
+                            Toyota Corolla LE 2019 <br>
+                            <span class="text-gradient-gold">+ IPHONE 18 Pro Max</span>
+                        </h3>
+
+                        <div class="relative rounded-2xl overflow-hidden border border-brand-border/80 group">
+                            <!-- IMAGEN DEL VEHÍCULO ACTUALIZADA -->
+                            <img src="https://raw.githubusercontent.com/jpaulino-dot/Marco-rifa/main/auto.jpeg" 
+                                 alt="Toyota Corolla LE 2019" 
+                                 class="w-full h-64 sm:h-80 object-cover group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-transparent opacity-80"></div>
+                            
+                            <div class="absolute bottom-4 left-4 right-4 flex justify-between items-end">
+                                <div>
+                                    <span class="text-xs text-gray-400 uppercase font-bold tracking-wider">Premio Garantizado</span>
+                                    <p class="text-white font-bold text-sm">Transmisión Automática | Aros Deportivos | Excelente Condición</p>
+                                </div>
+                                <span class="bg-black/80 backdrop-blur text-brand-gold font-extrabold px-3 py-1.5 rounded-xl border border-brand-gold/40 text-xs">
+                                    RD$ 25 / BOLETO
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Ticket Selector Widget -->
+                    <div class="lg:col-span-5 glass-panel p-6 rounded-2xl border border-brand-gold/30 space-y-6">
+                        <div class="border-b border-brand-border pb-4">
+                            <span class="text-xs font-bold text-brand-orange uppercase tracking-wider block">Paso 1: Selecciona tu jugada</span>
+                            <h4 class="font-heading font-extrabold text-xl text-white mt-1">¿Cuántos boletos quieres?</h4>
+                        </div>
+
+                        <!-- Presets grid con precios de RD$ 25 -->
+                        <div class="grid grid-cols-3 gap-2.5">
+                            <button onclick="setTicketQty(1)" class="preset-btn py-3 px-2 rounded-xl border border-brand-border bg-brand-dark/60 text-white font-bold text-sm hover:border-brand-gold transition-all text-center flex flex-col items-center">
+                                <span>1 Boleto</span>
+                                <span class="text-[10px] text-gray-400 font-normal">RD$ 25</span>
+                            </button>
+                            <button onclick="setTicketQty(5)" class="preset-btn py-3 px-2 rounded-xl border border-brand-border bg-brand-dark/60 text-white font-bold text-sm hover:border-brand-gold transition-all text-center flex flex-col items-center">
+                                <span>5 Boletos</span>
+                                <span class="text-[10px] text-brand-gold font-semibold">Popular 🔥</span>
+                            </button>
+                            <button onclick="setTicketQty(10)" class="preset-btn py-3 px-2 rounded-xl border border-brand-border bg-brand-dark/60 text-white font-bold text-sm hover:border-brand-gold transition-all text-center flex flex-col items-center">
+                                <span>10 Boletos</span>
+                                <span class="text-[10px] text-emerald-400 font-semibold">+ 1 Gratis</span>
+                            </button>
+                            <button onclick="setTicketQty(25)" class="preset-btn py-3 px-2 rounded-xl border border-brand-border bg-brand-dark/60 text-white font-bold text-sm hover:border-brand-gold transition-all text-center flex flex-col items-center">
+                                <span>25 Boletos</span>
+                                <span class="text-[10px] text-brand-gold font-semibold">Mejor Valor 💎</span>
+                            </button>
+                            <button onclick="setTicketQty(50)" class="preset-btn py-3 px-2 rounded-xl border border-brand-border bg-brand-dark/60 text-white font-bold text-sm hover:border-brand-gold transition-all text-center flex flex-col items-center">
+                                <span>50 Boletos</span>
+                                <span class="text-[10px] text-gray-400 font-normal">Súper Combo</span>
+                            </button>
+                            <button onclick="setTicketQty(100)" class="preset-btn py-3 px-2 rounded-xl border border-brand-border bg-brand-dark/60 text-white font-bold text-sm hover:border-brand-gold transition-all text-center flex flex-col items-center">
+                                <span>100 Boletos</span>
+                                <span class="text-[10px] text-sky-300 font-semibold">VIP Patron</span>
+                            </button>
+                        </div>
+
+                        <!-- Manual Qty Input -->
+                        <div class="space-y-2">
+                            <label class="text-xs text-gray-300 font-semibold block">O ingresa la cantidad exacta:</label>
+                            <div class="flex items-center gap-2">
+                                <button onclick="adjustQty(-1)" class="w-12 h-12 rounded-xl bg-brand-dark border border-brand-border text-white text-xl font-bold hover:bg-brand-border transition-colors flex items-center justify-center">
+                                    <i class="fa-solid fa-minus"></i>
+                                </button>
+                                <input type="number" id="customQtyInput" value="5" min="1" max="500" oninput="updateTicketQtyFromInput()"
+                                       class="w-full h-12 bg-brand-dark border border-brand-border rounded-xl text-center text-white font-heading font-black text-xl focus:outline-none focus:border-brand-gold">
+                                <button onclick="adjustQty(1)" class="w-12 h-12 rounded-xl bg-brand-dark border border-brand-border text-white text-xl font-bold hover:bg-brand-border transition-colors flex items-center justify-center">
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Price summary box -->
+                        <div class="bg-brand-dark/90 p-4 rounded-2xl border border-brand-border/80 space-y-2">
+                            <div class="flex justify-between items-center text-xs text-gray-400">
+                                <span>Precio por unidad:</span>
+                                <span>RD$ 25.00</span>
+                            </div>
+                            <div class="border-t border-brand-border pt-2 flex justify-between items-center">
+                                <span class="font-bold text-sm text-white">Total a Pagar:</span>
+                                <span class="font-heading font-black text-2xl text-gradient-gold" id="totalPriceCalc">RD$ 125</span>
+                            </div>
+                        </div>
+
+                        <!-- Action Button -->
+                        <button onclick="openCheckoutModal()" class="w-full py-4 rounded-2xl bg-gradient-gold hover:bg-gradient-gold-hover text-black font-heading font-black text-base uppercase tracking-wider shadow-xl shadow-brand-orange/30 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-3">
+                            <i class="fa-solid fa-cart-shopping text-lg"></i> Comprar Boletos Ahora
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VERIFICATION TOOL SECTION -->
+    <section id="verificar" class="py-16 relative z-10">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-panel p-8 sm:p-12 rounded-3xl border border-brand-gold/30 relative shadow-2xl">
+                
+                <div class="text-center max-w-xl mx-auto space-y-3 mb-8">
+                    <div class="w-14 h-14 rounded-2xl bg-brand-gold/10 border border-brand-gold/30 text-brand-gold flex items-center justify-center text-2xl mx-auto">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                    <h3 class="font-heading font-extrabold text-2xl sm:text-3xl text-white">Verificar Mis Boletos</h3>
+                    <p class="text-gray-400 text-sm">Ingresa tu número de boleto asignado (ej: #05432) o tu número de teléfono para consultar tu estatus en tiempo real.</p>
+                </div>
+
+                <div class="space-y-4 max-w-xl mx-auto">
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <input type="text" id="verifyInput" placeholder="Ej: #01234 o 809-555-0199" 
+                               class="w-full h-14 px-5 bg-brand-dark border border-brand-border rounded-2xl text-white font-medium text-base focus:outline-none focus:border-brand-gold transition-colors">
+                        <button onclick="verifyTickets()" id="btnVerify" class="sm:w-48 h-14 bg-gradient-gold text-black font-bold rounded-2xl shadow-lg hover:scale-105 transition-all text-sm uppercase tracking-wider flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-search"></i> Buscar
+                        </button>
+                    </div>
+
+                    <!-- Verification Result Box -->
+                    <div id="verifyResult" class="hidden mt-6 p-6 rounded-2xl border transition-all space-y-4"></div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-brand-dark border-t border-brand-border pt-12 pb-8 text-center text-xs text-gray-500">
+        <p>© 2026 Marcos Rifa Te Monta. Todos los derechos reservados. V2 Azul</p>
+    </footer>
+
+    <!-- CHECKOUT MODAL -->
+    <div id="checkoutModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+        <div class="glass-modal w-full max-w-xl rounded-3xl p-6 sm:p-8 border border-brand-gold/40 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            
+            <button onclick="closeCheckoutModal()" class="absolute top-5 right-5 text-gray-400 hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <!-- Step 1: Form & Details -->
+            <div id="modalStep1" class="space-y-6">
+                <div class="border-b border-brand-border pb-4">
+                    <span class="text-xs font-bold text-brand-gold uppercase tracking-wider">Finalizar Registro de Boletos</span>
+                    <h3 class="font-heading font-extrabold text-2xl text-white mt-1">Toyota Corolla LE 2019</h3>
+                </div>
+
+                <div class="bg-brand-dark p-4 rounded-2xl border border-brand-border/80 flex justify-between items-center">
+                    <div>
+                        <span class="text-xs text-gray-400 block">Cantidad seleccionada:</span>
+                        <span class="font-bold text-white text-base" id="modalQtySummary">5 Boletos</span>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-xs text-gray-400 block">Total a pagar:</span>
+                        <span class="font-heading font-black text-xl text-gradient-gold" id="modalTotalSummary">RD$ 125</span>
+                    </div>
+                </div>
+
+                <!-- SECCIÓN DE DATOS BANCARIOS PARA TRANSFERENCIA -->
+                <div class="bg-brand-dark/80 p-4 rounded-2xl border border-brand-gold/30 space-y-3">
+                    <span class="text-xs font-bold text-brand-gold uppercase tracking-wider flex items-center gap-1.5">
+                        <i class="fa-solid fa-building-columns"></i> Cuentas Bancarias Autorizadas
+                    </span>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-gray-300 max-h-40 overflow-y-auto pr-1">
+                        <div class="bg-black/40 p-2.5 rounded-xl border border-brand-border">
+                            <strong class="text-white block">Banreservas</strong>
+                            <span>Ahorro: <code class="text-brand-gold font-mono">0302209919</code></span>
+                        </div>
+                        <div class="bg-black/40 p-2.5 rounded-xl border border-brand-border">
+                            <strong class="text-white block">BHD</strong>
+                            <span>Ahorro: <code class="text-brand-gold font-mono">36691460019</code></span>
+                        </div>
+                        <div class="bg-black/40 p-2.5 rounded-xl border border-brand-border">
+                            <strong class="text-white block">Banco Popular</strong>
+                            <span>Corriente: <code class="text-brand-gold font-mono">843243866</code></span>
+                        </div>
+                        <div class="bg-black/40 p-2.5 rounded-xl border border-brand-border">
+                            <strong class="text-white block">Vimenca</strong>
+                            <span>Ahorro: <code class="text-brand-gold font-mono">102632742</code></span>
+                        </div>
+                        <div class="bg-black/40 p-2.5 rounded-xl border border-brand-border">
+                            <strong class="text-white block">Quik</strong>
+                            <span>Ahorro: <code class="text-brand-gold font-mono">1008074778</code></span>
+                        </div>
+                        <div class="bg-black/40 p-2.5 rounded-xl border border-brand-border">
+                            <strong class="text-white block">Asociación La Nacional</strong>
+                            <span>Ahorro (María M.): <code class="text-brand-gold font-mono">1460978395</code></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form con IDs correctos -->
+                <form id="purchaseForm" onsubmit="processPurchase(event)" class="space-y-4">
+                    <div class="space-y-1">
+                        <label class="text-xs text-gray-300 font-semibold">Nombre Completo *</label>
+                        <input type="text" id="nombreCliente" required placeholder="Ej. Juan Pérez" class="w-full h-12 px-4 bg-brand-dark border border-brand-border rounded-xl text-white text-sm focus:outline-none focus:border-brand-gold">
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="space-y-1">
+                            <label class="text-xs text-gray-300 font-semibold">Teléfono / WhatsApp *</label>
+                            <input type="tel" id="telefonoCliente" required placeholder="809-000-0000" class="w-full h-12 px-4 bg-brand-dark border border-brand-border rounded-xl text-white text-sm focus:outline-none focus:border-brand-gold">
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-xs text-gray-300 font-semibold">Método de Pago *</label>
+                            <select id="metodoPago" class="w-full h-12 px-4 bg-brand-dark border border-brand-border rounded-xl text-white text-sm focus:outline-none focus:border-brand-gold">
+                                <option value="Transferencia Bancaria">Transferencia Bancaria</option>
+                                <option value="Tarjeta de Crédito">Tarjeta de Crédito / Débito</option>
+                                <option value="WhatsApp Exprés">WhatsApp Exprés</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button type="submit" id="submitBtn" class="w-full py-4 mt-4 rounded-2xl bg-gradient-gold text-black font-heading font-black text-sm uppercase tracking-wider shadow-xl hover:scale-105 transition-all">
+                        Confirmar y Obtener Mis Boletos
+                    </button>
+                </form>
+            </div>
+
+            <!-- Step 2: Confirmation & Tickets Display -->
+            <div id="modalStep2" class="hidden space-y-6 text-center py-4">
+                <div class="w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 flex items-center justify-center text-3xl mx-auto">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+
+                <div>
+                    <h3 class="font-heading font-black text-2xl text-white">¡Boletos Reservados con Éxito!</h3>
+                    <p class="text-xs text-gray-300 mt-1">Tus boletos han sido asignados y guardados en el sistema.</p>
+                </div>
+
+                <div class="bg-brand-dark p-4 rounded-2xl border border-brand-border space-y-3">
+                    <span class="text-xs text-brand-gold font-bold uppercase tracking-wider block">Tus Números de Boleto Asignados:</span>
+                    <div id="generatedTicketsList" class="flex flex-wrap gap-2 justify-center max-h-32 overflow-y-auto p-2"></div>
+                </div>
+
+                <div class="space-y-3">
+                    <a id="whatsappConfirmBtn" href="#" target="_blank" class="w-full py-4 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-black font-heading font-black text-sm uppercase tracking-wider shadow-lg transition-all flex items-center justify-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-lg"></i> Enviar Comprobante por WhatsApp
+                    </a>
+                    <button onclick="closeCheckoutModal()" class="text-xs text-gray-400 hover:text-white underline">
+                        Cerrar Ventana
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwMUMNq8EtwZNDAcAqVzC3_ROtxtHO3h4b0T0tWHqBpSbWUidD9_bzrqWiemJSEIGyUoQ/exec';
+        function esc(v) {
+            return String(v == null ? '' : v).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+        }
+        let ticketQty = 5;
+        const pricePerTicket = 25; // Actualizado a RD$ 25 pesos por boleto
+
+        function setTicketQty(qty) {
+            ticketQty = qty;
+            document.getElementById('customQtyInput').value = qty;
+            updatePriceDisplay();
+        }
+
+        function adjustQty(change) {
+            ticketQty = Math.max(1, Math.min(500, ticketQty + change));
+            document.getElementById('customQtyInput').value = ticketQty;
+            updatePriceDisplay();
+        }
+
+        function updateTicketQtyFromInput() {
+            const val = parseInt(document.getElementById('customQtyInput').value);
+            if (!isNaN(val) && val >= 1) {
+                ticketQty = Math.min(500, val);
+                updatePriceDisplay();
+            }
+        }
+
+        function updatePriceDisplay() {
+            const total = ticketQty * pricePerTicket;
+            const formattedTotal = 'RD$ ' + total.toLocaleString();
+            document.getElementById('totalPriceCalc').innerText = formattedTotal;
+            document.getElementById('modalQtySummary').innerText = ticketQty + (ticketQty === 1 ? ' Boleto' : ' Boletos');
+            document.getElementById('modalTotalSummary').innerText = formattedTotal;
+        }
+
+        function openCheckoutModal() {
+            updatePriceDisplay();
+            document.getElementById('modalStep1').classList.remove('hidden');
+            document.getElementById('modalStep2').classList.add('hidden');
+            document.getElementById('checkoutModal').classList.remove('hidden');
+        }
+
+        function closeCheckoutModal() {
+            document.getElementById('checkoutModal').classList.add('hidden');
+        }
+
+        // FUNCIÓN MEJORADA PARA CARGAR EL PROGRESO DE VENTAS (META 99,999)
+        function loadRaffleProgress() {
+            fetch(`${GOOGLE_SCRIPT_URL}?action=stats`)
+                .then(res => res.json())
+                .then(data => {
+                    let totalSold = 0;
+                    if (data.status === 'success') {
+                        if (data.totalVendidos !== undefined) {
+                            totalSold = parseInt(data.totalVendidos) || 0;
+                        } else if (data.results && data.results.length > 0) {
+                            data.results.forEach(item => {
+                                let qty = parseInt(item.boletos) || 0;
+                                totalSold += qty;
+                            });
+                        }
+                    }
+                    
+                    const totalGoal = 99999; // Meta de boletos a 5 dígitos
+                    let percentage = (totalSold / totalGoal) * 100;
+                    if (percentage > 100) percentage = 100;
+
+                    let displayPercentage = percentage < 0.1 && totalSold > 0 ? percentage.toFixed(3) : percentage.toFixed(1);
+
+                    document.getElementById('progressBar').style.width = percentage + '%';
+                    document.getElementById('progressText').innerText = displayPercentage + '% Vendido';
+                    document.getElementById('soldStatsText').innerText = `${totalSold.toLocaleString()} de ${totalGoal.toLocaleString()} vendidos`;
+                })
+                .catch(err => {
+                    console.error("Error al cargar progreso:", err);
+                    document.getElementById('progressText').innerText = '0.0% Vendido';
+                    document.getElementById('progressBar').style.width = '0%';
+                    document.getElementById('soldStatsText').innerText = '0 de 99,999 vendidos';
+                });
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            loadRaffleProgress();
+        });
+
+        function processPurchase(e) {
+            e.preventDefault();
+            
+            const clientName = document.getElementById('nombreCliente').value.trim();
+            const clientPhone = document.getElementById('telefonoCliente').value.trim();
+            const paymentMethod = document.getElementById('metodoPago').value;
+            const totalAmount = (ticketQty * pricePerTicket).toLocaleString();
+
+            if (!clientName || !clientPhone) {
+                alert('Por favor, completa tu nombre y número de teléfono.');
+                return;
+            }
+
+            const ticketsContainer = document.getElementById('generatedTicketsList');
+            ticketsContainer.innerHTML = '';
+            const generatedNumbers = [];
+
+            for (let i = 0; i < ticketQty; i++) {
+                const randomNum = Math.floor(Math.random() * 100000).toString().padStart(5, '0');
+                generatedNumbers.push('#' + randomNum);
+    
+                const badge = document.createElement('span');
+                badge.className = 'px-3 py-1.5 rounded-lg bg-brand-gold/10 border border-brand-gold/40 text-brand-gold font-mono font-bold text-xs';
+                badge.textContent = `#${randomNum}`;
+                ticketsContainer.appendChild(badge);
+            }
+            const ticketsString = generatedNumbers.join(', ');
+
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.innerText = 'Guardando en la base de datos...';
+
+            const payload = {
+                nombre: clientName,
+                telefono: clientPhone,
+                boletos: ticketQty,
+                numeros: ticketsString,
+                total: totalAmount + ' DOP',
+                metodo: paymentMethod
+            };
+
+            fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'text/plain;charset=utf-8',
+                },
+                body: JSON.stringify(payload)
+            })
+            .catch(err => {
+                console.error("Error al registrar en Google Sheets:", err);
+            })
+            .finally(() => {
+                submitBtn.disabled = false;
+                submitBtn.innerText = 'Confirmar y Obtener Mis Boletos';
+
+                loadRaffleProgress();
+
+                const waMessage = `*NUEVA COMPRA - MARCOS RIFA*%0A%0A` +
+                    `👤 *Nombre:* ${clientName}%0A` +
+                    `📱 *Teléfono:* ${clientPhone}%0A` +
+                    `🎟️ *Boletos:* ${ticketQty}%0A` +
+                    `🔢 *Números:* ${ticketsString}%0A` +
+                    `💰 *Total:* RD$ ${totalAmount} DOP%0A` +
+                    `💳 *Método:* ${paymentMethod}`;
+                
+                document.getElementById('whatsappConfirmBtn').href = `https://wa.me/+18496348129?text=${waMessage}`;
+
+                document.getElementById('modalStep1').classList.add('hidden');
+                document.getElementById('modalStep2').classList.remove('hidden');
+            });
+        }
+
+        function verifyTickets() {
+            const query = document.getElementById('verifyInput').value.trim();
+            const resultBox = document.getElementById('verifyResult');
+            const btnVerify = document.getElementById('btnVerify');
+
+            if (!query) {
+                alert('Por favor ingresa un número de teléfono o número de boleto.');
+                return;
+            }
+
+            btnVerify.disabled = true;
+            btnVerify.innerHTML = '<i class="fa-solid fa-spinner animate-spin"></i> Buscando...';
+            resultBox.classList.add('hidden');
+
+            fetch(`${GOOGLE_SCRIPT_URL}?query=${encodeURIComponent(query)}`)
+                .then(res => res.json())
+                .then(data => {
+                    resultBox.classList.remove('hidden');
+                    if (data.status === 'success' && data.results && data.results.length > 0) {
+                        let html = `<h4 class="font-bold text-white text-base mb-3 border-b border-brand-border pb-2">Resultados Encontrados (${data.results.length}):</h4>`;
+                        
+                        data.results.forEach(item => {
+                            let badgeColor = 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30';
+                            if (item.estado && item.estado.toLowerCase().includes('completado')) {
+                                badgeColor = 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30';
+                            }
+
+                            html += `
+                                <div class="bg-brand-dark p-4 rounded-xl border border-brand-border space-y-2 text-left mb-3">
+                                    <div class="flex justify-between items-center">
+                                        <span class="font-bold text-white text-sm">👤 ${esc(item.nombre)}</span>
+                                        <span class="px-2.5 py-1 rounded-lg border font-bold text-xs uppercase ${badgeColor}">
+                                            ${esc(item.estado || 'Pendiente')}
+                                        </span>
+                                    </div>
+                                    <div class="text-xs text-gray-300">📱 Teléfono: ${esc(item.telefono)}</div>
+                                    <div class="text-xs text-gray-300">💰 Total: ${esc(item.total)} (${esc(item.boletos)} boletos)</div>
+                                    <div class="text-xs text-brand-gold font-mono pt-1">🎟️ Números: ${esc(item.numeros)}</div>
+                                </div>
+                            `;
+                        });
+                        resultBox.className = 'mt-6 p-6 rounded-2xl border border-emerald-500/30 bg-emerald-500/5 space-y-4';
+                        resultBox.innerHTML = html;
+                    } else {
+                        resultBox.className = 'mt-6 p-6 rounded-2xl border border-red-500/30 bg-red-500/5 text-center text-red-400 text-sm font-semibold';
+                        resultBox.innerHTML = '❌ No se encontraron registros con ese teléfono o boleto.';
+                    }
+                })
+                .catch(err => {
+                    console.error('Error al verificar:', err);
+                    resultBox.classList.remove('hidden');
+                    resultBox.className = 'mt-6 p-6 rounded-2xl border border-red-500/30 bg-red-500/5 text-center text-red-400 text-sm font-semibold';
+                    resultBox.innerHTML = 'Error de conexión con la base de datos.';
+                })
+                .finally(() => {
+                    btnVerify.disabled = false;
+                    btnVerify.innerHTML = '<i class="fa-solid fa-search"></i> Buscar';
+                });
+        }
+    </script>
+</body>
+</html>
